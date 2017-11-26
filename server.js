@@ -28,7 +28,7 @@ let server = http.createServer((req, res) => {
     if (!get.pathname === "[a-zA-Z./]" || get.pathname.indexOf("..") !== -1) {
       console.log("Illegal charachters in request");
       res.status = 404;
-      res.end();
+      res.end("404 - not found");
       return
     } else {
       //if Input is clean read file and return it if it exists
@@ -40,8 +40,9 @@ let server = http.createServer((req, res) => {
           res.end();
           return
         } else {
+          console.log("404");
           res.status = 404;
-          res.end();
+          res.end("404 - not found");
           return
         }
       });
