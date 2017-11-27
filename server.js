@@ -12,8 +12,8 @@ let server = http.createServer((req, res) => {
   let get = url.parse(req.url, true);
   //if the requests does not ask for a specific site:
   if (get.pathname === "/") {
-    console.log("NO REQUEST: Pathname " + __dirname + "\\website\\index.html");
-    fs.readFile(__dirname + "\\website\\index.html", (err, data) => {
+    console.log("NO REQUEST: Pathname " + __dirname + "/website/index.html");
+    fs.readFile(__dirname + "/website/index.html", (err, data) => {
       if (data) {
         res.write(data.toString());
         res.end();
@@ -32,9 +32,9 @@ let server = http.createServer((req, res) => {
       return
     } else {
       //if Input is clean read file and return it if it exists
-      console.log("Input clean: Pathname " + __dirname + "\\website" + get.pathname);
+      console.log("Input clean: Pathname " + __dirname + "/website" + get.pathname);
       //FOR LATER : if a user does not enter .html add it automatically-------maybe should make it so we can also use .php or .js
-      fs.readFile(__dirname + "\\website" + get.pathname, (err,data) => {
+      fs.readFile(__dirname + "/website" + get.pathname, (err,data) => {
         if (data) {
           res.write(data.toString());
           res.end();
