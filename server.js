@@ -2,6 +2,8 @@
 let http = require("http");
 let url = require("url");
 let fs = require("fs");
+require("./addons");
+let rightsaccess = require("./checkaccessrights");
 
 let server = http.createServer((req, res) => {
   //give back 200 code and set the content to website
@@ -27,10 +29,13 @@ let server = http.createServer((req, res) => {
     //clean input
     if (!get.pathname === "[a-zA-Z./]" || get.pathname.indexOf("..") !== -1) {
       console.log("Illegal charachters in request");
-      res.status = 404;
+      //res.status = 404;
+      res.writeHead(404);
       res.end("404 - not found");
       return
     } else {
+      //User request control rights
+      if(rightsaccess("user",get.pathname)){
       //if Input is clean read file and return it if it exists
       console.log("Input clean: Pathname " + __dirname + "/website" + get.pathname);
       //FOR LATER : if a user does not enter .html add it automatically-------maybe should make it so we can also use .php or .js
@@ -41,12 +46,20 @@ let server = http.createServer((req, res) => {
           return
         } else {
           console.log("404");
-          res.status = 404;
+          //res.status = 404;
+          res.writeHead(404);
           res.end("404 - not found");
           return
         }
       });
     }
+    //not the required rights
+    else{
+      res.writeHead(401);
+      res.end("401 - not authorized");
+    }
+    }
   }
 });
 server.listen(8080);
+console.log("Server running on localhost:8080");
