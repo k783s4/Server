@@ -1,3 +1,4 @@
+//check for the rights of the request
 require("./addons");
 module.exports = function(token,request){
   if(token === "Server"){
@@ -7,7 +8,12 @@ module.exports = function(token,request){
     return true;
   }
   if(request.contains("server_only") || request.contains("private") || request.contains("public")){
-    return false;
+    if(request.contains("server_only")){
+      return false;
+    }
+    if(request.contains("private") && (token !="Server" || token != "SU")){
+      return false;
+    }
   }
   else{
     return true;

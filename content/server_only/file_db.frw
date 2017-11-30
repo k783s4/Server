@@ -1,0 +1,9 @@
+maxServices = 1000;
+
+Images(public){
+location:public/Images
+}
+
+Documentation(public){
+location:public/Docs
+}

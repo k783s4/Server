@@ -7,3 +7,7 @@ String.prototype.contains = function(contain){
     return false;
   }
 }
+//Replace substring between indexes
+String.prototype.replace = function(start,finish,replace){
+  return this.substring(0,start) + replace + this.substring(finish);
+}
