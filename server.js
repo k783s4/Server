@@ -29,16 +29,24 @@ let server = http.createServer((req, res) => {
     //clean input
     if (!get.pathname === "[a-zA-Z./]" || get.pathname.indexOf("..") !== -1) {
       console.log("Illegal charachters in request");
-      //res.status = 404;
-      res.writeHead(404);
-      res.end("404 - not found");
+      res.writeHead(400);
+      res.end("400 - Bad Request");
       return
     } else {
       //User request control rights
       if(rightsaccess("user",get.pathname)){
       //if Input is clean read file and return it if it exists
       console.log("Input clean: Pathname " + __dirname + "/website" + get.pathname);
-      //FOR LATER : if a user does not enter .html add it automatically-------maybe should make it so we can also use .php or .js
+      //add extension automatically
+      if(!get.pathname.contains(".")){
+        fs.readdirSync(__dirname+"/website").every(file =>{
+          if("/"+file.split(".")[0] === get.pathname){
+            get.pathname = "/"+file.toString();
+            return false;
+          }
+          else{return true;}
+        });
+      }
       fs.readFile(__dirname + "/website" + get.pathname, (err,data) => {
         if (data) {
           res.write(data.toString());
