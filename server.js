@@ -2,12 +2,12 @@
 let http = require("http");
 let url = require("url");
 let fs = require("fs");
-require("./addons");
+let addons = require("./addons");
 let rightsaccess = require("./checkaccessrights");
 
 let server = http.createServer((req, res) => {
   //give back 200 code and set the content to website
-  res.writeHead(200, "text/html");
+  res.writeHead(200, {"Content-type": "text/html"});
   //write the get request
   console.log(url.parse(req.url, true));
   //analyze the GET request
@@ -17,7 +17,8 @@ let server = http.createServer((req, res) => {
     console.log("NO REQUEST: Pathname " + __dirname + "/website/index.html");
     fs.readFile(__dirname + "/website/index.html", (err, data) => {
       if (data) {
-        res.write(data.toString());
+        res.writeHead(200, {"Content-type":addons.getMT(get.pathname)});
+        res.write(data);
         res.end();
         return
       }
@@ -29,7 +30,8 @@ let server = http.createServer((req, res) => {
     //clean input
     if (!get.pathname === "[a-zA-Z./]" || get.pathname.indexOf("..") !== -1) {
       console.log("Illegal charachters in request");
-      res.writeHead(400);
+      res.writeHead(400,{"Content-type":"text/html"});
+
       res.end("400 - Bad Request");
       return
     } else {
@@ -49,13 +51,14 @@ let server = http.createServer((req, res) => {
       }
       fs.readFile(__dirname + "/website" + get.pathname, (err,data) => {
         if (data) {
-          res.write(data.toString());
+          res.writeHead(200, {"Content-type":addons.getMT(get.pathname)});
+          res.write(data);
           res.end();
           return
         } else {
           console.log("404");
           //res.status = 404;
-          res.writeHead(404);
+          res.writeHead(404,{"Content-type":"text/html"});
           res.end("404 - not found");
           return
         }
@@ -63,7 +66,7 @@ let server = http.createServer((req, res) => {
     }
     //not the required rights
     else{
-      res.writeHead(401);
+      res.writeHead(401,{"Content-type":"text/html"});
       res.end("401 - not authorized");
     }
     }
