@@ -1,0 +1,20 @@
+This is a Node.js server. It is easy to use and customize.
+
+In each folder you will find a README explaining what the folder does and what you can do with it.
+The server is subdivided into 3 parts:
+
+  ROOT FOLDER:
+  -contains the code that makes up the server. The main file being server.js
+  -do not edit any of the files in this folder unless you know what you are doing
+  -addons.js is a self-made library for simple tasks the server needs
+  -getServices.js returns "services" available to the user taking in account their rights, such as a possible FTP server, SSH server, Documentations for the server and more
+  -checkaccessrights.js controls whether a user is allowed to access a services
+
+  -tokens can be used to access special information. A token should be supplied by the server itself or by the browser. This option can be deactivated under /content/server_only/config.cnf.
+  -FURTHER EXPLANATION NEEDED
+
+  WEBSITE:
+  -put your website files here (no resource files!!), such as HTML,JS,PHP,CSS,etc.
+
+  CONTENT:
+  -place your resource files such as images, videos or downloadable items here.
