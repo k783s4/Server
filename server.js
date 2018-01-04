@@ -52,9 +52,9 @@ let server = http.createServer((req, res) => {
           });
         }
         //if the request is not a content request
-        /**if(!get.pathname.contains("content")){
+        if(!get.pathname.contains("content")){
           get.pathname = "/website" + get.pathname;
-        }**/
+        }
         fs.readFile(__dirname + get.pathname, (err,data) => {
           console.log("a");
           if (data) {
