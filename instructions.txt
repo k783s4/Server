@@ -18,3 +18,6 @@ The server is subdivided into 3 parts:
 
   CONTENT:
   -place your resource files such as images, videos or downloadable items here.
+  -private is only viewable by users with the right tokens
+  -public can be accessed by anyone
+  -server_only contains settings for the server.
