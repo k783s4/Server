@@ -5,4 +5,4 @@ Server is well documented and each folder contains a README explaining its purpo
 
 to run the server just type "node server.js" in the command prompt
 
-from simplicity comes security - you won´t have to worry that your server is so unnecessarily complicated that you will miss a hidden feature that gives malicious users access to your server´s information. Keep it simple, you won´t have to be a security specialist to safely operate this server.
+from simplicity comes security - you won´t have to worry about your server being so unnecessarily complicated that you will miss a hidden page/feature that gives malicious users access to your server´s information. Keep it simple, you won´t have to be a security specialist to safely operate this server.
