@@ -67,12 +67,10 @@ function runs(req, res) {
       res.end("400 - Bad Request");
       return
     } else {
-      console.log("test");
       //User request control rights
       rightsaccess.allow("user", get.pathname, function(tf) {
         if (tf) {
           //if Input is clean read file and return it if it exists
-          console.log("Input clean: Pathname " + __dirname + "/website" + get.pathname);
           //add extension automatically
           if (!get.pathname.contains(".")) {
             fs.readdirSync(__dirname + "/website").every(file => {
@@ -89,9 +87,7 @@ function runs(req, res) {
             get.pathname = "/website" + get.pathname;
           }
           fs.readFile(__dirname + get.pathname, (err, data) => {
-            console.log("a");
             if (data) {
-              console.log("a2");
               res.writeHead(200, {
                 "Content-type": addons.getMT(get.pathname)
               });
