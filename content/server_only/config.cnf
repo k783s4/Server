@@ -1,6 +1,0 @@
-login = false
-tokens = true
-  SU = true
-  Server = true
-FTP = false
-SSH = false
