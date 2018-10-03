@@ -14,17 +14,16 @@ if (process.argv[2] === "-s") {
     const options = {
       key: fs.readFileSync(config.key),
       cert: fs.readFileSync(config.cert)
-    }
+    };
   } else if (process.argv[3] === "pfx") {
     const options = {
       pfx: fs.readFileSync(config.pfx),
       passphrase: config.passphrase
-    }
+    };
   }
   else{
     console.log("the argument following -s is incorrect, it has to either be 'pem' or 'pfx'");
   }
-};
 server = https.createServer(options, (req, res) => runs(req, res));
 }
 else {
