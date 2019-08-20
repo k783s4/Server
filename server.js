@@ -58,7 +58,7 @@ function runs(req, res) {
     });
   } else {
     //clean input
-    if (!get.pathname === "[a-zA-Z./]" || get.pathname.indexOf("..") !== -1) {
+    if (!(get.pathname.match(/[A-Za-z0-9/.]/g).length === get.pathname.length) || get.pathname.indexOf("..") !== -1) {
       console.log("Illegal charachters in request");
       res.writeHead(400, {
         "Content-type": "text/html"
