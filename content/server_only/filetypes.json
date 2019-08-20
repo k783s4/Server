@@ -8,5 +8,6 @@
 "gif" : "image/gif",
 "css" : "text/css",
 "zip" : "application/zip",
-"ico" : "image/x-icon"
+"ico" : "image/x-icon",
+"jar" : " application/java-archive"
 }

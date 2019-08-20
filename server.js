@@ -73,8 +73,8 @@ function runs(req, res) {
           //if Input is clean read file and return it if it exists
           //add extension automatically
           if (!get.pathname.contains(".")) {
-            fs.readdirSync(__dirname + "/website").every(file => {
-              if ("/" + file.split(".")[0] === get.pathname) {
+            fs.readdirSync(__dirname + "/website" + get.pathname.split("/").slice(0,-1).join("/")).every(file => {
+              if (file.split(".")[0] === get.pathname.split("/").pop()) {
                 get.pathname = "/" + file.toString();
                 return false;
               } else {
